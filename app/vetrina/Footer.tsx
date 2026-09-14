@@ -125,6 +125,12 @@ export default function Footer({ labels = defaultLabels }: { labels?: FooterLabe
         </div>
       </div>
 
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="border border-[#ffa500]/40 bg-[#ffa500]/10 rounded-lg px-4 py-3 mb-6 text-xs text-[#ffd699] leading-relaxed">
+          ⚠️ <strong>Demo purposes only.</strong> This website is a portfolio case study, not a real travel agency. All destinations, photos and locations shown are illustrative examples — not tied to any specific real place, not for sale, and not available for booking. Content is not accurate or updated for any real destination.
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 border-t border-white/10 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between gap-2 relative z-10">
         <p>© 2024 Voyara Travel. {labels.rights}</p>
         <div className="flex gap-4">
