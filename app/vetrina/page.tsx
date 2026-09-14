@@ -11,7 +11,6 @@ import FloatingButtons from './FloatingButtons';
 import MobileBottomNav from './MobileBottomNav';
 import Footer from './Footer';
 import ReviewsMarquee from './ReviewsMarquee';
-import { galleryItems, GallerySource } from '../../lib/gallery';
 import { tours } from '../../lib/tours';
 import { bundles } from '../../lib/bundles';
 import { useCart } from '../../lib/cart-context';
@@ -259,13 +258,6 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
 };
 
 const faqs = ['faq1', 'faq2', 'faq3'] as const;
-
-const socialGlyph: { [key in GallerySource]: string } = {
-  tiktok: '🎵',
-  youtube: '▶️',
-  instagram: '📸',
-  facebook: '👍'
-};
 
 export default function VetrinaPage() {
   const router = useRouter();
@@ -567,38 +559,6 @@ export default function VetrinaPage() {
             <p className="text-white/70 text-sm mt-3">{t.helpAssistance}</p>
           </div>
         </Reveal>
-      </section>
-
-      {/* SOCIAL GALLERY */}
-      <section className="py-12 px-4 bg-[#f5f7fa]">
-        <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#0d1f2d] text-center mb-2">{t.galleryTitle}</h2>
-            <p className="text-gray-500 text-center text-sm mb-8">{t.gallerySubtitle}</p>
-          </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 auto-rows-35 sm:auto-rows-40">
-            {galleryItems.map((item, i) => (
-              <Reveal key={item.id} delay={i * 60} className={item.tall ? 'row-span-2' : ''}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative block w-full h-full rounded-xl overflow-hidden"
-                >
-                  <Image src={item.image} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                    <span className="w-11 h-11 rounded-full bg-white/90 flex items-center justify-center text-lg opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all">
-                      ▶
-                    </span>
-                  </div>
-                  <span className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow group-hover:scale-110 transition-transform">
-                    {socialGlyph[item.source]}
-                  </span>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* REVIEWS */}
