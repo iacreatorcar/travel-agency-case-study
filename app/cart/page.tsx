@@ -26,7 +26,8 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     submit: 'Send to WhatsApp', submitting: 'Sending...',
     successTitle: 'Booking sent!', successText: 'Check your WhatsApp — we\'re sending you tour options and pricing now.',
     errorGeneric: 'Oops! Please try again or message us directly on WhatsApp.',
-    noBooking: 'No payment yet — this is just a booking request. We confirm everything on WhatsApp.'
+    noBooking: 'No payment yet — this is just a booking request. We confirm everything on WhatsApp.',
+    home: 'Home', reviewPrompt: '⭐ Enjoyed your experience? Leave us a review on Google'
   },
   it: {
     breadcrumb: 'La Tua Selezione',
@@ -43,7 +44,8 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     submit: 'Invia su WhatsApp', submitting: 'Invio in corso...',
     successTitle: 'Prenotazione inviata!', successText: 'Controlla WhatsApp — ti stiamo inviando le opzioni di tour e i prezzi ora.',
     errorGeneric: 'Oops! Riprova o contattaci direttamente su WhatsApp.',
-    noBooking: 'Nessun pagamento ancora — questa è solo una richiesta di prenotazione. Confirmiamo tutto su WhatsApp.'
+    noBooking: 'Nessun pagamento ancora — questa è solo una richiesta di prenotazione. Confirmiamo tutto su WhatsApp.',
+    home: 'Home', reviewPrompt: '⭐ Ti è piaciuta l\'esperienza? Lasciaci una recensione su Google'
   },
   ru: {
     breadcrumb: 'Ваш Выбор',
@@ -60,7 +62,8 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     submit: 'Отправить в WhatsApp', submitting: 'Отправка...',
     successTitle: 'Бронирование отправлено!', successText: 'Проверьте WhatsApp — отправляем варианты туров и цены сейчас.',
     errorGeneric: 'Упс! Попробуйте снова или напишите нам напрямую в WhatsApp.',
-    noBooking: 'Платёж ещё не требуется — это просто запрос бронирования. Всё подтвердим в WhatsApp.'
+    noBooking: 'Платёж ещё не требуется — это просто запрос бронирования. Всё подтвердим в WhatsApp.',
+    home: 'Главная', reviewPrompt: '⭐ Понравился опыт? Оставьте отзыв о нас на Google'
   },
   de: {
     breadcrumb: 'Deine Auswahl',
@@ -77,7 +80,8 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     submit: 'An WhatsApp senden', submitting: 'Wird gesendet...',
     successTitle: 'Buchung gesendet!', successText: 'Überprüfe WhatsApp — wir senden dir jetzt Tour-Optionen und Preise.',
     errorGeneric: 'Hoppla! Versuche es erneut oder schreib uns direkt auf WhatsApp.',
-    noBooking: 'Noch keine Zahlung nötig — dies ist nur eine Buchungsanfrage. Alles bestätigen wir auf WhatsApp.'
+    noBooking: 'Noch keine Zahlung nötig — dies ist nur eine Buchungsanfrage. Alles bestätigen wir auf WhatsApp.',
+    home: 'Startseite', reviewPrompt: '⭐ Hat dir die Erfahrung gefallen? Hinterlasse uns eine Google-Bewertung'
   }
 };
 
@@ -126,7 +130,7 @@ export default function CartPage() {
       />
 
       <div className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500">
-        <Link href="/" className="hover:underline">Home</Link> <span className="mx-1">›</span> {tr.breadcrumb}
+        <Link href="/" className="hover:underline">{tr.home}</Link> <span className="mx-1">›</span> {tr.breadcrumb}
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pb-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
@@ -232,7 +236,7 @@ export default function CartPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-700 hover:border-[#00a8cc] transition"
               >
-                ⭐ Ti è piaciuta l'esperienza? Lasciaci una recensione su Google
+                {tr.reviewPrompt}
               </a>
             </div>
           ) : (

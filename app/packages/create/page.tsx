@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { tours } from '../../../lib/tours';
+import { Lang, tours } from '../../../lib/tours';
 import { generateQuotePDF } from '../../../lib/pdf-quote';
 import { GOOGLE_REVIEW_LINK } from '../../../lib/google-review';
 import Header from '../../vetrina/Header';
@@ -45,13 +45,135 @@ const tourIcons: { [slug: string]: string } = {
   'jerusalem-by-bus': '🕌'
 };
 
-const steps = [
-  { n: 1, label: 'Escursioni' },
-  { n: 2, label: 'Dati Viaggio' },
-  { n: 3, label: 'Riepilogo' }
-];
+interface CreateDict {
+  stepTours: string; stepTravel: string; stepSummary: string;
+  eyebrow: string; heroTitle: string; heroSubtitle: string;
+  chooseTours: string; chooseToursSub: string;
+  back: string; continue: string;
+  yourDetails: string; yourDetailsSub: string;
+  fullName: string; fullNamePlaceholder: string;
+  phone: string; phonePlaceholder: string;
+  email: string; emailPlaceholder: string;
+  hotelName: string; hotelPlaceholder: string;
+  arrival: string; departure: string;
+  adults: string; kids0to2: string; kids2to5: string; kids5to10: string;
+  notes: string; notesPlaceholder: string;
+  summary: string;
+  chosenTours: (n: number) => string;
+  labelName: string; labelPhone: string; labelEmail: string; labelHotel: string;
+  labelArrival: string; labelDeparture: string; labelAdults: string; labelKids: string;
+  sentTitle: string; reviewPrompt: string;
+  downloadPdf: string; bookNow: string; sending: string;
+  privacyNote: string;
+  waMessage: (params: {
+    tourNames: string[]; name: string; phone: string; email: string;
+    hotel: string; arrival: string; departure: string; adults: number; kids: number; notes: string;
+  }) => string;
+}
+
+const t: { [key in Lang]: CreateDict } = {
+  en: {
+    stepTours: 'Tours', stepTravel: 'Travel Info', stepSummary: 'Summary',
+    eyebrow: 'Tailored for You', heroTitle: 'Create Your Package',
+    heroSubtitle: 'Three simple steps: pick your tours, add your dates and get a quote on WhatsApp.',
+    chooseTours: 'Choose Your Tours', chooseToursSub: 'Select as many as you like.',
+    back: '← Back', continue: 'Continue →',
+    yourDetails: 'Your Details', yourDetailsSub: "We need these to organize your package.",
+    fullName: '👤 Full Name *', fullNamePlaceholder: 'John Smith',
+    phone: '📱 Phone / WhatsApp *', phonePlaceholder: '+1 555 1234567',
+    email: '✉️ Email', emailPlaceholder: 'john.smith@email.com',
+    hotelName: '🏨 Hotel Name', hotelPlaceholder: 'Hotel where you are staying',
+    arrival: '✈️ Arrival Date & Time *', departure: '🛫 Departure Date & Time *',
+    adults: '🧑 Adults (10+ years) *', kids0to2: '👶 Children 0-2 years', kids2to5: '🧒 Children 2-5 years', kids5to10: '🧒 Children 5-10 years',
+    notes: '📝 Notes (optional)', notesPlaceholder: 'Special requests, allergies, requests...',
+    summary: 'Summary',
+    chosenTours: (n) => `Selected Tours (${n})`,
+    labelName: 'Name', labelPhone: 'Phone', labelEmail: 'Email', labelHotel: 'Hotel',
+    labelArrival: 'Arrival', labelDeparture: 'Departure', labelAdults: 'Adults', labelKids: 'Children',
+    sentTitle: 'Request sent! Check WhatsApp.', reviewPrompt: '⭐ Enjoyed your experience? Leave us a review on Google',
+    downloadPdf: '📄 Download PDF', bookNow: 'Book Now', sending: 'Sending...',
+    privacyNote: '🔒 Your data will only be used to manage your booking. By submitting, you agree to be contacted via WhatsApp.',
+    waMessage: ({ tourNames, name, phone, email, hotel, arrival, departure, adults, kids, notes }) =>
+      `Hi! I'd like to create a custom package.\n\nTours:\n${tourNames.map((n) => `- ${n}`).join('\n')}\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email || '-'}\nHotel: ${hotel || '-'}\nArrival: ${arrival}\nDeparture: ${departure}\nAdults: ${adults}, Children: ${kids}\nNotes: ${notes || '-'}`
+  },
+  it: {
+    stepTours: 'Escursioni', stepTravel: 'Dati Viaggio', stepSummary: 'Riepilogo',
+    eyebrow: 'Su Misura per Te', heroTitle: 'Crea il Tuo Pacchetto',
+    heroSubtitle: 'Tre semplici step: scegli le escursioni, inserisci le date e ricevi il preventivo su WhatsApp.',
+    chooseTours: 'Scegli le Escursioni', chooseToursSub: 'Selezionane quante ne vuoi.',
+    back: '← Indietro', continue: 'Continua →',
+    yourDetails: 'I Tuoi Dati', yourDetailsSub: 'Ci servono per organizzare al meglio il tuo pacchetto.',
+    fullName: '👤 Nome e Cognome *', fullNamePlaceholder: 'Mario Rossi',
+    phone: '📱 Telefono / WhatsApp *', phonePlaceholder: '+39 333 1234567',
+    email: '✉️ Email', emailPlaceholder: 'mario.rossi@email.com',
+    hotelName: '🏨 Nome struttura', hotelPlaceholder: 'Hotel dove alloggi',
+    arrival: '✈️ Data e ora di arrivo *', departure: '🛫 Data e ora di partenza *',
+    adults: '🧑 Adulti (10+ anni) *', kids0to2: '👶 Bambini 0-2 anni', kids2to5: '🧒 Bambini 2-5 anni', kids5to10: '🧒 Bambini 5-10 anni',
+    notes: '📝 Note (opzionale)', notesPlaceholder: 'Esigenze particolari, allergie, richieste...',
+    summary: 'Riepilogo',
+    chosenTours: (n) => `Escursioni Scelte (${n})`,
+    labelName: 'Nome', labelPhone: 'Telefono', labelEmail: 'Email', labelHotel: 'Struttura',
+    labelArrival: 'Arrivo', labelDeparture: 'Partenza', labelAdults: 'Adulti', labelKids: 'Bambini',
+    sentTitle: 'Richiesta inviata! Controlla WhatsApp.', reviewPrompt: "⭐ Ti è piaciuta l'esperienza? Lasciaci una recensione su Google",
+    downloadPdf: '📄 Scarica PDF', bookNow: 'Prenota ora', sending: 'Invio...',
+    privacyNote: '🔒 I tuoi dati saranno usati solo per gestire la prenotazione. Inviando accetti di essere contattato via WhatsApp.',
+    waMessage: ({ tourNames, name, phone, email, hotel, arrival, departure, adults, kids, notes }) =>
+      `Ciao! Vorrei creare un pacchetto su misura.\n\nEscursioni:\n${tourNames.map((n) => `- ${n}`).join('\n')}\n\nNome: ${name}\nTelefono: ${phone}\nEmail: ${email || '-'}\nStruttura: ${hotel || '-'}\nArrivo: ${arrival}\nPartenza: ${departure}\nAdulti: ${adults}, Bambini: ${kids}\nNote: ${notes || '-'}`
+  },
+  ru: {
+    stepTours: 'Экскурсии', stepTravel: 'Данные Поездки', stepSummary: 'Итог',
+    eyebrow: 'Специально для Вас', heroTitle: 'Создайте Свой Пакет',
+    heroSubtitle: 'Три простых шага: выберите экскурсии, укажите даты и получите предложение в WhatsApp.',
+    chooseTours: 'Выберите Экскурсии', chooseToursSub: 'Выберите сколько угодно.',
+    back: '← Назад', continue: 'Далее →',
+    yourDetails: 'Ваши Данные', yourDetailsSub: 'Они нужны нам, чтобы лучше организовать ваш пакет.',
+    fullName: '👤 Имя и Фамилия *', fullNamePlaceholder: 'Иван Иванов',
+    phone: '📱 Телефон / WhatsApp *', phonePlaceholder: '+7 900 1234567',
+    email: '✉️ Email', emailPlaceholder: 'ivan.ivanov@email.com',
+    hotelName: '🏨 Название отеля', hotelPlaceholder: 'Отель, где вы остановились',
+    arrival: '✈️ Дата и время прилёта *', departure: '🛫 Дата и время вылета *',
+    adults: '🧑 Взрослые (от 10 лет) *', kids0to2: '👶 Дети 0-2 года', kids2to5: '🧒 Дети 2-5 лет', kids5to10: '🧒 Дети 5-10 лет',
+    notes: '📝 Примечания (необязательно)', notesPlaceholder: 'Особые пожелания, аллергии, запросы...',
+    summary: 'Итог',
+    chosenTours: (n) => `Выбранные Экскурсии (${n})`,
+    labelName: 'Имя', labelPhone: 'Телефон', labelEmail: 'Email', labelHotel: 'Отель',
+    labelArrival: 'Прилёт', labelDeparture: 'Вылет', labelAdults: 'Взрослые', labelKids: 'Дети',
+    sentTitle: 'Запрос отправлен! Проверьте WhatsApp.', reviewPrompt: '⭐ Понравился опыт? Оставьте отзыв о нас на Google',
+    downloadPdf: '📄 Скачать PDF', bookNow: 'Забронировать', sending: 'Отправка...',
+    privacyNote: '🔒 Ваши данные используются только для организации бронирования. Отправляя форму, вы соглашаетесь на связь через WhatsApp.',
+    waMessage: ({ tourNames, name, phone, email, hotel, arrival, departure, adults, kids, notes }) =>
+      `Здравствуйте! Хочу создать индивидуальный пакет.\n\nЭкскурсии:\n${tourNames.map((n) => `- ${n}`).join('\n')}\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email || '-'}\nОтель: ${hotel || '-'}\nПрилёт: ${arrival}\nВылет: ${departure}\nВзрослые: ${adults}, Дети: ${kids}\nПримечания: ${notes || '-'}`
+  },
+  de: {
+    stepTours: 'Touren', stepTravel: 'Reisedaten', stepSummary: 'Zusammenfassung',
+    eyebrow: 'Für Dich Maßgeschneidert', heroTitle: 'Stelle Dein Paket Zusammen',
+    heroSubtitle: 'Drei einfache Schritte: wähle die Touren, gib deine Daten ein und erhalte ein Angebot per WhatsApp.',
+    chooseTours: 'Wähle Deine Touren', chooseToursSub: 'Wähle so viele du möchtest.',
+    back: '← Zurück', continue: 'Weiter →',
+    yourDetails: 'Deine Daten', yourDetailsSub: 'Wir brauchen diese, um dein Paket optimal zu organisieren.',
+    fullName: '👤 Vollständiger Name *', fullNamePlaceholder: 'Max Mustermann',
+    phone: '📱 Telefon / WhatsApp *', phonePlaceholder: '+49 151 1234567',
+    email: '✉️ E-Mail', emailPlaceholder: 'max.mustermann@email.com',
+    hotelName: '🏨 Hotelname', hotelPlaceholder: 'Hotel, in dem du wohnst',
+    arrival: '✈️ Ankunftsdatum & -zeit *', departure: '🛫 Abreisedatum & -zeit *',
+    adults: '🧑 Erwachsene (ab 10 Jahren) *', kids0to2: '👶 Kinder 0-2 Jahre', kids2to5: '🧒 Kinder 2-5 Jahre', kids5to10: '🧒 Kinder 5-10 Jahre',
+    notes: '📝 Notizen (optional)', notesPlaceholder: 'Besondere Wünsche, Allergien, Anfragen...',
+    summary: 'Zusammenfassung',
+    chosenTours: (n) => `Ausgewählte Touren (${n})`,
+    labelName: 'Name', labelPhone: 'Telefon', labelEmail: 'E-Mail', labelHotel: 'Unterkunft',
+    labelArrival: 'Ankunft', labelDeparture: 'Abreise', labelAdults: 'Erwachsene', labelKids: 'Kinder',
+    sentTitle: 'Anfrage gesendet! Überprüfe WhatsApp.', reviewPrompt: '⭐ Hat dir die Erfahrung gefallen? Hinterlasse uns eine Google-Bewertung',
+    downloadPdf: '📄 PDF Herunterladen', bookNow: 'Jetzt Buchen', sending: 'Wird gesendet...',
+    privacyNote: '🔒 Deine Daten werden nur zur Verwaltung der Buchung verwendet. Mit dem Absenden stimmst du zu, per WhatsApp kontaktiert zu werden.',
+    waMessage: ({ tourNames, name, phone, email, hotel, arrival, departure, adults, kids, notes }) =>
+      `Hallo! Ich möchte ein individuelles Paket erstellen.\n\nTouren:\n${tourNames.map((n) => `- ${n}`).join('\n')}\n\nName: ${name}\nTelefon: ${phone}\nE-Mail: ${email || '-'}\nUnterkunft: ${hotel || '-'}\nAnkunft: ${arrival}\nAbreise: ${departure}\nErwachsene: ${adults}, Kinder: ${kids}\nNotizen: ${notes || '-'}`
+  }
+};
+
+const dateLocale: { [key in Lang]: string } = { en: 'en-GB', it: 'it-IT', ru: 'ru-RU', de: 'de-DE' };
 
 export default function CreatePackagePage() {
+  const [language, setLanguage] = useState<Lang>('en');
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [form, setForm] = useState({
@@ -70,8 +192,15 @@ export default function CreatePackagePage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const activeTours = tours.filter((t) => t.active !== false);
-  const selectedTours = activeTours.filter((t) => selected.has(t.slug));
+  const tr = t[language];
+  const steps = [
+    { n: 1, label: tr.stepTours },
+    { n: 2, label: tr.stepTravel },
+    { n: 3, label: tr.stepSummary }
+  ];
+
+  const activeTours = tours.filter((tour) => tour.active !== false);
+  const selectedTours = activeTours.filter((tour) => selected.has(tour.slug));
 
   const toggleTour = (slug: string) => {
     setSelected((prev) => {
@@ -85,11 +214,22 @@ export default function CreatePackagePage() {
   const formatDateTime = (value: string) => {
     const d = new Date(value);
     if (isNaN(d.getTime())) return value || '-';
-    return d.toLocaleString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return d.toLocaleString(dateLocale[language], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   };
 
   const waMessage = encodeURIComponent(
-    `Ciao! Vorrei creare un pacchetto su misura.\n\nEscursioni:\n${selectedTours.map((t) => `- ${t.title.it}`).join('\n')}\n\nNome: ${form.name}\nTelefono: ${form.phone}\nEmail: ${form.email || '-'}\nStruttura: ${form.hotel || '-'}\nArrivo: ${formatDateTime(form.arrival)}\nPartenza: ${formatDateTime(form.departure)}\nAdulti: ${form.adults}, Bambini: ${form.kids0to2 + form.kids2to5 + form.kids5to10}\nNote: ${form.notes || '-'}`
+    tr.waMessage({
+      tourNames: selectedTours.map((tour) => tour.title[language]),
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      hotel: form.hotel,
+      arrival: formatDateTime(form.arrival),
+      departure: formatDateTime(form.departure),
+      adults: form.adults,
+      kids: form.kids0to2 + form.kids2to5 + form.kids5to10,
+      notes: form.notes
+    })
   );
 
   const handleConfirm = async () => {
@@ -108,20 +248,20 @@ export default function CreatePackagePage() {
       adults: form.adults,
       kids: form.kids0to2 + form.kids2to5 + form.kids5to10,
       notes: form.notes,
-      tours: selectedTours.map((t) => ({ name: t.title.it, duration: t.duration.it }))
+      tours: selectedTours.map((tour) => ({ name: tour.title[language], duration: tour.duration[language] }))
     });
     doc.save(`preventivo-voyaratravel-${Date.now()}.pdf`);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      <Header language="it" onLanguageChange={() => {}} navLinks={getMainNavLinks('it')} />
+      <Header language={language} onLanguageChange={setLanguage} navLinks={getMainNavLinks(language)} />
 
       <div className="max-w-4xl mx-auto px-4 py-10">
         <div className="text-center mb-8">
-          <p className="text-[#ffa500] text-xs font-bold uppercase tracking-wider mb-2">Su Misura per Te</p>
-          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase">Crea il Tuo Pacchetto</h1>
-          <p className="text-gray-500 text-sm mt-2">Tre semplici step: scegli le escursioni, inserisci le date e ricevi il preventivo su WhatsApp.</p>
+          <p className="text-[#ffa500] text-xs font-bold uppercase tracking-wider mb-2">{tr.eyebrow}</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 uppercase">{tr.heroTitle}</h1>
+          <p className="text-gray-500 text-sm mt-2">{tr.heroSubtitle}</p>
         </div>
 
         {/* STEPPER */}
@@ -146,8 +286,8 @@ export default function CreatePackagePage() {
         {/* STEP 1: TOURS */}
         {step === 1 && (
           <div>
-            <h2 className="text-lg font-black text-gray-900 uppercase mb-1">Scegli le Escursioni</h2>
-            <p className="text-gray-500 text-sm mb-5">Selezionane quante ne vuoi.</p>
+            <h2 className="text-lg font-black text-gray-900 uppercase mb-1">{tr.chooseTours}</h2>
+            <p className="text-gray-500 text-sm mb-5">{tr.chooseToursSub}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
               {activeTours.map((tour) => (
                 <button
@@ -160,8 +300,8 @@ export default function CreatePackagePage() {
                 >
                   <span className="text-xl shrink-0">{tourIcons[tour.slug] ?? '📍'}</span>
                   <div className="min-w-0 flex-1">
-                    <p className="font-bold text-gray-900 text-sm truncate">{tour.title.it}</p>
-                    <p className="text-gray-500 text-xs">{tour.duration.it}</p>
+                    <p className="font-bold text-gray-900 text-sm truncate">{tour.title[language]}</p>
+                    <p className="text-gray-500 text-xs">{tour.duration[language]}</p>
                   </div>
                   <span
                     className={`w-5 h-5 rounded-full border-2 shrink-0 ${
@@ -173,7 +313,7 @@ export default function CreatePackagePage() {
             </div>
             <div className="flex justify-between">
               <Link href="/packages" className="border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-full hover:border-gray-300 transition">
-                ← Indietro
+                {tr.back}
               </Link>
               <button
                 type="button"
@@ -181,7 +321,7 @@ export default function CreatePackagePage() {
                 onClick={() => setStep(2)}
                 className="bg-[#ffa500] text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-[#e69400] transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                Continua →
+                {tr.continue}
               </button>
             </div>
           </div>
@@ -190,51 +330,51 @@ export default function CreatePackagePage() {
         {/* STEP 2: FORM */}
         {step === 2 && (
           <div>
-            <h2 className="text-lg font-black text-gray-900 uppercase mb-1">I Tuoi Dati</h2>
-            <p className="text-gray-500 text-sm mb-5">Ci servono per organizzare al meglio il tuo pacchetto.</p>
+            <h2 className="text-lg font-black text-gray-900 uppercase mb-1">{tr.yourDetails}</h2>
+            <p className="text-gray-500 text-sm mb-5">{tr.yourDetailsSub}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">👤 Nome e Cognome *</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.fullName}</label>
                 <input
                   required
-                  placeholder="Mario Rossi"
+                  placeholder={tr.fullNamePlaceholder}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-[#ffa500]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">📱 Telefono / WhatsApp *</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.phone}</label>
                 <input
                   required
                   type="tel"
-                  placeholder="+39 333 1234567"
+                  placeholder={tr.phonePlaceholder}
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-[#ffa500]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">✉️ Email</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.email}</label>
                 <input
                   type="email"
-                  placeholder="mario.rossi@email.com"
+                  placeholder={tr.emailPlaceholder}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-[#ffa500]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">🏨 Nome struttura</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.hotelName}</label>
                 <input
-                  placeholder="Hotel dove alloggi"
+                  placeholder={tr.hotelPlaceholder}
                   value={form.hotel}
                   onChange={(e) => setForm({ ...form, hotel: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-[#ffa500]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">✈️ Data e ora di arrivo *</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.arrival}</label>
                 <input
                   required
                   type="datetime-local"
@@ -244,7 +384,7 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">🛫 Data e ora di partenza *</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.departure}</label>
                 <input
                   required
                   type="datetime-local"
@@ -254,7 +394,7 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">🧑 Adulti (10+ anni) *</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.adults}</label>
                 <input
                   required
                   type="number"
@@ -265,7 +405,7 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">👶 Bambini 0-2 anni</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.kids0to2}</label>
                 <input
                   type="number"
                   min={0}
@@ -275,7 +415,7 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">🧒 Bambini 2-5 anni</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.kids2to5}</label>
                 <input
                   type="number"
                   min={0}
@@ -285,7 +425,7 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1">🧒 Bambini 5-10 anni</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.kids5to10}</label>
                 <input
                   type="number"
                   min={0}
@@ -295,10 +435,10 @@ export default function CreatePackagePage() {
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-xs font-semibold text-gray-600 mb-1">📝 Note (opzionale)</label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">{tr.notes}</label>
                 <textarea
                   rows={3}
-                  placeholder="Esigenze particolari, allergie, richieste..."
+                  placeholder={tr.notesPlaceholder}
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
                   className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-[#ffa500]"
@@ -307,7 +447,7 @@ export default function CreatePackagePage() {
             </div>
             <div className="flex justify-between">
               <button type="button" onClick={() => setStep(1)} className="border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-full hover:border-gray-300 transition">
-                ← Indietro
+                {tr.back}
               </button>
               <button
                 type="button"
@@ -315,58 +455,58 @@ export default function CreatePackagePage() {
                 onClick={() => setStep(3)}
                 className="bg-[#ffa500] text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-[#e69400] transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                Continua →
+                {tr.continue}
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 3: RIEPILOGO */}
+        {/* STEP 3: SUMMARY */}
         {step === 3 && (
           <div>
-            <h2 className="text-lg font-black text-gray-900 uppercase mb-4">Riepilogo</h2>
+            <h2 className="text-lg font-black text-gray-900 uppercase mb-4">{tr.summary}</h2>
             <div className="border border-gray-200 rounded-2xl p-6 mb-6">
-              <p className="text-xs font-black text-gray-900 uppercase mb-3">Escursioni Scelte ({selectedTours.length})</p>
+              <p className="text-xs font-black text-gray-900 uppercase mb-3">{tr.chosenTours(selectedTours.length)}</p>
               <ul className="space-y-1.5 mb-5">
-                {selectedTours.map((t) => (
-                  <li key={t.slug} className="flex items-start gap-2 text-sm text-gray-700">
-                    <span>{tourIcons[t.slug] ?? '📍'}</span>
-                    <span className="font-semibold">{t.title.it}</span> — {t.duration.it}
+                {selectedTours.map((tour) => (
+                  <li key={tour.slug} className="flex items-start gap-2 text-sm text-gray-700">
+                    <span>{tourIcons[tour.slug] ?? '📍'}</span>
+                    <span className="font-semibold">{tour.title[language]}</span> — {tour.duration[language]}
                   </li>
                 ))}
               </ul>
 
               <div className="grid grid-cols-2 gap-4 text-sm mb-2">
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Nome</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelName}</p>
                   <p className="text-gray-900">{form.name}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Telefono</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelPhone}</p>
                   <p className="text-gray-900">{form.phone}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Email</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelEmail}</p>
                   <p className="text-gray-900">{form.email || '-'}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Struttura</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelHotel}</p>
                   <p className="text-gray-900">{form.hotel || '-'}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Arrivo</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelArrival}</p>
                   <p className="text-gray-900">{form.arrival.replace('T', ' ')}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Partenza</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelDeparture}</p>
                   <p className="text-gray-900">{form.departure.replace('T', ' ')}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Adulti</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelAdults}</p>
                   <p className="text-gray-900">{form.adults}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Bambini</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">{tr.labelKids}</p>
                   <p className="text-gray-900">{form.kids0to2 + form.kids2to5 + form.kids5to10}</p>
                 </div>
               </div>
@@ -374,7 +514,7 @@ export default function CreatePackagePage() {
               {submitted ? (
                 <div className="mt-4 space-y-2">
                   <p className="bg-green-50 border border-green-200 text-green-700 rounded-lg p-3 text-sm font-semibold text-center">
-                    Richiesta inviata! Controlla WhatsApp.
+                    {tr.sentTitle}
                   </p>
                   <a
                     href={GOOGLE_REVIEW_LINK}
@@ -382,7 +522,7 @@ export default function CreatePackagePage() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 border border-gray-200 rounded-lg p-3 text-sm text-gray-700 hover:border-[#00a8cc] transition"
                   >
-                    ⭐ Ti è piaciuta l'esperienza? Lasciaci una recensione su Google
+                    {tr.reviewPrompt}
                   </a>
                 </div>
               ) : (
@@ -392,7 +532,7 @@ export default function CreatePackagePage() {
                     onClick={handleDownloadPDF}
                     className="flex items-center justify-center gap-2 border border-gray-200 text-gray-700 font-semibold py-3 rounded-full hover:border-[#00a8cc] transition"
                   >
-                    📄 Scarica PDF
+                    {tr.downloadPdf}
                   </button>
                   <button
                     type="button"
@@ -400,16 +540,16 @@ export default function CreatePackagePage() {
                     disabled={submitting}
                     className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-3 rounded-full hover:bg-[#1ebe57] transition disabled:opacity-60"
                   >
-                    💬 {submitting ? 'Invio...' : 'Prenota ora'}
+                    💬 {submitting ? tr.sending : tr.bookNow}
                   </button>
                 </div>
               )}
               <p className="text-gray-400 text-[11px] text-center mt-2">
-                🔒 I tuoi dati saranno usati solo per gestire la prenotazione. Inviando accetti di essere contattato via WhatsApp.
+                {tr.privacyNote}
               </p>
             </div>
             <button type="button" onClick={() => setStep(2)} className="border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-full hover:border-gray-300 transition">
-              ← Indietro
+              {tr.back}
             </button>
           </div>
         )}

@@ -45,6 +45,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     heroTitle: 'Book Egypt Tours – Simple, Transparent, Trusted',
     heroSubtitle: 'Desert safaris, Nile cruises, snorkeling. All-inclusive pricing, no surprises.',
     searchDestination: 'Destination', searchCheckIn: 'Check-in', searchGuests: 'Guests', searchBtn: 'Search',
+    searchPlaceholder: 'Find places and things to do', navBooking: 'Booking',
     tabMakeTrip: 'Make Your Trip', tabFindTrip: 'Find your trip', tabRentCar: 'Transfers',
     whenTraveling: 'When will you be traveling?', exactTime: 'Have An Exact Time', approxTime: 'Have An Approximate Time', notSure: 'Not Sure Yet',
     fromLabel: 'From', fromPlaceholder: 'Select the start date of the trip',
@@ -88,6 +89,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     heroTitle: 'Prenota Tour in Egitto – Semplice, Trasparente, Affidabile',
     heroSubtitle: 'Safari nel deserto, crociere sul Nilo, snorkeling. Prezzi all-inclusive, nessuna sorpresa.',
     searchDestination: 'Destinazione', searchCheckIn: 'Check-in', searchGuests: 'Ospiti', searchBtn: 'Cerca',
+    searchPlaceholder: 'Trova luoghi ed esperienze', navBooking: 'Booking',
     tabMakeTrip: 'Crea il Tuo Viaggio', tabFindTrip: 'Trova il tuo viaggio', tabRentCar: 'Trasferimenti',
     whenTraveling: 'Quando vuoi viaggiare?', exactTime: 'Ho una Data Precisa', approxTime: 'Ho una Data Approssimativa', notSure: 'Non Sono Sicuro',
     fromLabel: 'Dal', fromPlaceholder: 'Seleziona la data di inizio viaggio',
@@ -131,6 +133,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     heroTitle: 'Туры по Египту – Просто, Прозрачно, Надёжно',
     heroSubtitle: 'Пустынные сафари, круизы по Нилу, снорклинг. Всё включено, никаких сюрпризов.',
     searchDestination: 'Направление', searchCheckIn: 'Дата заезда', searchGuests: 'Гости', searchBtn: 'Поиск',
+    searchPlaceholder: 'Найдите места и развлечения', navBooking: 'Бронирование',
     tabMakeTrip: 'Спланировать поездку', tabFindTrip: 'Найти поездку', tabRentCar: 'Трансферы',
     whenTraveling: 'Когда вы планируете поездку?', exactTime: 'Точная дата', approxTime: 'Примерная дата', notSure: 'Пока не уверен',
     fromLabel: 'С', fromPlaceholder: 'Выберите дату начала поездки',
@@ -174,6 +177,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     heroTitle: 'Ägypten-Touren Buchen – Einfach, Transparent, Zuverlässig',
     heroSubtitle: 'Wüstensafaris, Nilkreuzfahrten, Schnorcheln. Alles inklusive, keine Überraschungen.',
     searchDestination: 'Reiseziel', searchCheckIn: 'Anreise', searchGuests: 'Gäste', searchBtn: 'Suchen',
+    searchPlaceholder: 'Finde Orte und Aktivitäten', navBooking: 'Booking',
     tabMakeTrip: 'Reise Zusammenstellen', tabFindTrip: 'Reise Finden', tabRentCar: 'Transfers',
     whenTraveling: 'Wann möchtest du reisen?', exactTime: 'Genauer Zeitpunkt', approxTime: 'Ungefährer Zeitpunkt', notSure: 'Noch Unsicher',
     fromLabel: 'Von', fromPlaceholder: 'Startdatum der Reise wählen',
@@ -246,7 +250,7 @@ export default function VetrinaPage() {
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Find places and things to do"
+              placeholder={t.searchPlaceholder}
               className="flex-1 outline-none text-sm text-gray-700 placeholder:text-gray-400"
             />
           </form>
@@ -337,7 +341,7 @@ export default function VetrinaPage() {
           <div className="max-w-7xl mx-auto px-4 h-12 flex items-center justify-between text-sm font-medium text-gray-700">
             <div className="flex items-center gap-6 overflow-x-auto">
               <Link href="/" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navHome}</Link>
-              <Link href="/quick-booking" className="hover:text-[#00a8cc] whitespace-nowrap font-semibold text-[#00a8cc]">Booking</Link>
+              <Link href="/quick-booking" className="hover:text-[#00a8cc] whitespace-nowrap font-semibold text-[#00a8cc]">{t.navBooking}</Link>
               <Link href="/packages" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navPackages}</Link>
               <Link href="/about" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navAbout}</Link>
               <Link href="/contact" className="hover:text-[#00a8cc] whitespace-nowrap">{t.footerContact}</Link>

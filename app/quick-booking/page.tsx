@@ -27,7 +27,19 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     notes: 'Notes',
     submit: 'Send Request',
     success: 'Request sent! Check WhatsApp.',
-    error: 'Error. Try again.'
+    error: 'Error. Try again.',
+    home: 'Home',
+    flightHeading: '✈️ Flight Ticket Request', flightSubheading: "Tell us your flight preferences and we'll send options",
+    cityOrAirport: 'City or airport', addFlight: '+ Add Flight',
+    hotelHeading: '🏨 Hotel Request', hotelSubheading: 'Find the perfect accommodation for your stay',
+    cityDestination: 'City / Destination', rooms: 'Rooms', hotelLevel: 'Hotel Level',
+    any: 'Any', star3: '3 Star', star4: '4 Star', star5: '5 Star',
+    visaHeading: '📋 Visa Request', visaSubheading: 'Get assistance with your visa application',
+    destinationCountry: 'Destination Country', nationality: 'Nationality', travelDate: 'Travel Date',
+    packagesHeading: '🌍 Travel Program Request', packagesSubheading: 'Design your custom travel package',
+    destination: 'Destination', fromDate: 'From Date', toDate: 'To Date', budget: 'Budget (optional)',
+    notesFlights: 'Preferred airline / seat preference...', notesHotels: 'Preferred area / budget / hotel name...',
+    notesVisas: 'Residency / visa type / urgency...', notesPackages: 'Include flights? cities? preferences...'
   },
   it: {
     breadcrumb: 'Prenotazione Veloce',
@@ -44,7 +56,19 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     notes: 'Note',
     submit: 'Invia Richiesta',
     success: 'Richiesta inviata! Controlla WhatsApp.',
-    error: 'Errore. Riprova.'
+    error: 'Errore. Riprova.',
+    home: 'Home',
+    flightHeading: '✈️ Richiesta Biglietto Aereo', flightSubheading: 'Raccontaci le tue preferenze di volo e ti invieremo le opzioni',
+    cityOrAirport: 'Città o aeroporto', addFlight: '+ Aggiungi Volo',
+    hotelHeading: '🏨 Richiesta Hotel', hotelSubheading: 'Trova la sistemazione perfetta per il tuo soggiorno',
+    cityDestination: 'Città / Destinazione', rooms: 'Camere', hotelLevel: 'Livello Hotel',
+    any: 'Qualsiasi', star3: '3 Stelle', star4: '4 Stelle', star5: '5 Stelle',
+    visaHeading: '📋 Richiesta Visto', visaSubheading: 'Ricevi assistenza per la tua richiesta di visto',
+    destinationCountry: 'Paese di Destinazione', nationality: 'Nazionalità', travelDate: 'Data di Viaggio',
+    packagesHeading: '🌍 Richiesta Programma di Viaggio', packagesSubheading: 'Componi il tuo pacchetto di viaggio su misura',
+    destination: 'Destinazione', fromDate: 'Data Inizio', toDate: 'Data Fine', budget: 'Budget (facoltativo)',
+    notesFlights: 'Compagnia aerea preferita / preferenza posto...', notesHotels: 'Zona preferita / budget / nome hotel...',
+    notesVisas: 'Residenza / tipo di visto / urgenza...', notesPackages: 'Includere voli? città? preferenze...'
   },
   ru: {
     breadcrumb: 'Быстрое бронирование',
@@ -61,7 +85,19 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     notes: 'Примечания',
     submit: 'Отправить запрос',
     success: 'Запрос отправлен! Проверьте WhatsApp.',
-    error: 'Ошибка. Попробуйте снова.'
+    error: 'Ошибка. Попробуйте снова.',
+    home: 'Главная',
+    flightHeading: '✈️ Запрос на авиабилет', flightSubheading: 'Расскажите нам о предпочтениях по рейсу, и мы пришлём варианты',
+    cityOrAirport: 'Город или аэропорт', addFlight: '+ Добавить рейс',
+    hotelHeading: '🏨 Запрос на отель', hotelSubheading: 'Найдите идеальное размещение для вашего отдыха',
+    cityDestination: 'Город / Направление', rooms: 'Номера', hotelLevel: 'Категория отеля',
+    any: 'Любая', star3: '3 звезды', star4: '4 звезды', star5: '5 звёзд',
+    visaHeading: '📋 Запрос на визу', visaSubheading: 'Получите помощь с оформлением визы',
+    destinationCountry: 'Страна назначения', nationality: 'Гражданство', travelDate: 'Дата поездки',
+    packagesHeading: '🌍 Запрос на туристическую программу', packagesSubheading: 'Составьте свой индивидуальный тур',
+    destination: 'Направление', fromDate: 'Дата начала', toDate: 'Дата окончания', budget: 'Бюджет (по желанию)',
+    notesFlights: 'Предпочтительная авиакомпания / место...', notesHotels: 'Предпочтительный район / бюджет / название отеля...',
+    notesVisas: 'Резидентство / тип визы / срочность...', notesPackages: 'Включить перелёты? города? пожелания...'
   },
   de: {
     breadcrumb: 'Schnellbuchung',
@@ -78,7 +114,19 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     notes: 'Notizen',
     submit: 'Anfrage senden',
     success: 'Anfrage gesendet! Überprüfe WhatsApp.',
-    error: 'Fehler. Versuche es erneut.'
+    error: 'Fehler. Versuche es erneut.',
+    home: 'Startseite',
+    flightHeading: '✈️ Fluganfrage', flightSubheading: 'Teile uns deine Flugpräferenzen mit und wir senden dir Optionen',
+    cityOrAirport: 'Stadt oder Flughafen', addFlight: '+ Flug Hinzufügen',
+    hotelHeading: '🏨 Hotelanfrage', hotelSubheading: 'Finde die perfekte Unterkunft für deinen Aufenthalt',
+    cityDestination: 'Stadt / Reiseziel', rooms: 'Zimmer', hotelLevel: 'Hotelkategorie',
+    any: 'Beliebig', star3: '3 Sterne', star4: '4 Sterne', star5: '5 Sterne',
+    visaHeading: '📋 Visumanfrage', visaSubheading: 'Erhalte Unterstützung bei deinem Visumantrag',
+    destinationCountry: 'Zielland', nationality: 'Staatsangehörigkeit', travelDate: 'Reisedatum',
+    packagesHeading: '🌍 Reiseprogramm-Anfrage', packagesSubheading: 'Gestalte dein individuelles Reisepaket',
+    destination: 'Reiseziel', fromDate: 'Von Datum', toDate: 'Bis Datum', budget: 'Budget (optional)',
+    notesFlights: 'Bevorzugte Fluggesellschaft / Sitzplatzwunsch...', notesHotels: 'Bevorzugte Gegend / Budget / Hotelname...',
+    notesVisas: 'Wohnsitz / Visumtyp / Dringlichkeit...', notesPackages: 'Flüge einschließen? Städte? Präferenzen...'
   }
 };
 
@@ -167,7 +215,7 @@ export default function QuickBookingPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="text-sm text-gray-500 mb-6">
-          <Link href="/" className="hover:underline">Home</Link> <span className="mx-2">›</span> {tr.breadcrumb}
+          <Link href="/" className="hover:underline">{tr.home}</Link> <span className="mx-2">›</span> {tr.breadcrumb}
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
@@ -197,8 +245,8 @@ export default function QuickBookingPage() {
             {tab === 'flights' && (
               <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">✈️ Flight Ticket Request</h3>
-                  <p className="text-sm text-gray-500 mb-4">Tell us your flight preferences and we'll send options</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{tr.flightHeading}</h3>
+                  <p className="text-sm text-gray-500 mb-4">{tr.flightSubheading}</p>
 
                   <div className="flex gap-3 mb-6">
                     {(['roundTrip', 'oneWay', 'multiCity'] as const).map((type) => (
@@ -219,11 +267,11 @@ export default function QuickBookingPage() {
                   <div className="grid grid-cols-3 gap-4 mb-4">
                     <div>
                       <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.from}</label>
-                      <input type="text" placeholder="City or airport" value={form.from} onChange={(e) => setForm({ ...form, from: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
+                      <input type="text" placeholder={tr.cityOrAirport} value={form.from} onChange={(e) => setForm({ ...form, from: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.to}</label>
-                      <input type="text" placeholder="City or airport" value={form.to} onChange={(e) => setForm({ ...form, to: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
+                      <input type="text" placeholder={tr.cityOrAirport} value={form.to} onChange={(e) => setForm({ ...form, to: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.departure}</label>
@@ -238,7 +286,7 @@ export default function QuickBookingPage() {
                     </div>
                   )}
 
-                  <button type="button" className="text-[#5e5ce6] font-bold text-sm mb-6 hover:underline">+ Add Flight</button>
+                  <button type="button" className="text-[#5e5ce6] font-bold text-sm mb-6 hover:underline">{tr.addFlight}</button>
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div>
@@ -270,13 +318,13 @@ export default function QuickBookingPage() {
             {tab === 'hotels' && (
               <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">🏨 Hotel Request</h3>
-                  <p className="text-sm text-gray-500 mb-4">Find the perfect accommodation for your stay</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{tr.hotelHeading}</h3>
+                  <p className="text-sm text-gray-500 mb-4">{tr.hotelSubheading}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">City / Destination</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.cityDestination}</label>
                     <input type="text" placeholder="Sharm, Cairo, Dubai..." value={form.from} onChange={(e) => setForm({ ...form, from: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
@@ -291,7 +339,7 @@ export default function QuickBookingPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Rooms</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.rooms}</label>
                     <input type="number" min={1} value={1} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
@@ -303,12 +351,12 @@ export default function QuickBookingPage() {
                     <input type="number" min={0} value={form.children} onChange={(e) => setForm({ ...form, children: Number(e.target.value) })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Hotel Level</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.hotelLevel}</label>
                     <select className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white">
-                      <option>Any</option>
-                      <option>3 Star</option>
-                      <option>4 Star</option>
-                      <option>5 Star</option>
+                      <option>{tr.any}</option>
+                      <option>{tr.star3}</option>
+                      <option>{tr.star4}</option>
+                      <option>{tr.star5}</option>
                     </select>
                   </div>
                 </div>
@@ -319,21 +367,21 @@ export default function QuickBookingPage() {
             {tab === 'visas' && (
               <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">📋 Visa Request</h3>
-                  <p className="text-sm text-gray-500 mb-4">Get assistance with your visa application</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{tr.visaHeading}</h3>
+                  <p className="text-sm text-gray-500 mb-4">{tr.visaSubheading}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Destination Country</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.destinationCountry}</label>
                     <input type="text" placeholder="UAE, Saudi, Schengen..." value={form.visaCountry} onChange={(e) => setForm({ ...form, visaCountry: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Nationality</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.nationality}</label>
                     <input type="text" placeholder="Egyptian, Saudi..." value={form.visaType} onChange={(e) => setForm({ ...form, visaType: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Travel Date</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.travelDate}</label>
                     <input type="date" value={form.departure} onChange={(e) => setForm({ ...form, departure: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                 </div>
@@ -344,21 +392,21 @@ export default function QuickBookingPage() {
             {tab === 'packages' && (
               <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">🌍 Travel Program Request</h3>
-                  <p className="text-sm text-gray-500 mb-4">Design your custom travel package</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{tr.packagesHeading}</h3>
+                  <p className="text-sm text-gray-500 mb-4">{tr.packagesSubheading}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Destination</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.destination}</label>
                     <input type="text" placeholder="Turkey, UAE, Thailand..." value={form.visaCountry} onChange={(e) => setForm({ ...form, visaCountry: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">From Date</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.fromDate}</label>
                     <input type="date" value={form.checkIn} onChange={(e) => setForm({ ...form, checkIn: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">To Date</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.toDate}</label>
                     <input type="date" value={form.checkOut} onChange={(e) => setForm({ ...form, checkOut: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                 </div>
@@ -373,16 +421,16 @@ export default function QuickBookingPage() {
                     <input type="number" min={0} value={form.children} onChange={(e) => setForm({ ...form, children: Number(e.target.value) })} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Hotel Level</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.hotelLevel}</label>
                     <select className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white">
-                      <option>Any</option>
-                      <option>3 Star</option>
-                      <option>4 Star</option>
-                      <option>5 Star</option>
+                      <option>{tr.any}</option>
+                      <option>{tr.star3}</option>
+                      <option>{tr.star4}</option>
+                      <option>{tr.star5}</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-600 font-semibold mb-2">Budget (optional)</label>
+                    <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.budget}</label>
                     <input type="text" placeholder="EGP / USD / AED" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white" />
                   </div>
                 </div>
@@ -398,7 +446,7 @@ export default function QuickBookingPage() {
 
             <div>
               <label className="block text-xs text-gray-600 font-semibold mb-2">{tr.notes}</label>
-              <textarea placeholder={tab === 'flights' ? 'Preferred airline / seat preference...' : tab === 'hotels' ? 'Preferred area / budget / hotel name...' : tab === 'visas' ? 'Residency / visa type / urgency...' : 'Include flights? cities? preferences...'} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={4} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white resize-none" />
+              <textarea placeholder={tab === 'flights' ? tr.notesFlights : tab === 'hotels' ? tr.notesHotels : tab === 'visas' ? tr.notesVisas : tr.notesPackages} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={4} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-gray-50 text-gray-900 outline-none focus:border-[#5e5ce6] focus:bg-white resize-none" />
             </div>
 
             <button type="submit" disabled={submitting} className="w-full bg-[#00a8cc] text-white font-bold py-3 rounded-full hover:bg-[#007399] disabled:opacity-50 transition">

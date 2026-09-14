@@ -60,7 +60,10 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     seaTitle: 'Sea & Snorkeling', seaDesc: 'Ras Mohammed, Tiran, private boats and the coral reefs of the Red Sea.',
     beyondTitle: 'Beyond Sharm', beyondDesc: 'Cairo, Luxor, Petra and Jerusalem — day trips outside Sinai.',
     funTitle: 'Fun & Water', funDesc: 'Water park, dolphins, parasailing and speedboat rides.',
-    toursIn: 'tours', explore: 'Explore', from: 'from'
+    toursIn: 'tours', explore: 'Explore', from: 'from',
+    bundleBadge: '🎁 Bundle Package', bundleTitle: 'Combo Packages', bundleSubtitle: 'Several activities together, at a discounted price compared to booking separately.',
+    whatsappBtn: 'WhatsApp', emailBtn: '✉️ Email', detailsBtn: 'Details', bookNowBtn: 'Book Now',
+    ctaTitle: 'None of these packages 100% convince you?', ctaSubtitle: 'Build your own package: pick the tours, add your dates and get a quote on WhatsApp.', ctaBtn: 'Create your own package →'
   },
   it: {
     eyebrow: 'Collezioni Curate',
@@ -70,7 +73,10 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     seaTitle: 'Mare & Snorkeling', seaDesc: 'Ras Mohammed, Tiran, barche private e le barriere coralline del Mar Rosso.',
     beyondTitle: 'Fuori Sharm', beyondDesc: 'Cairo, Luxor, Petra e Gerusalemme — gite di un giorno fuori dal Sinai.',
     funTitle: 'Divertimento & Acqua', funDesc: 'Parco acquatico, delfini, parasailing e giri in motoscafo.',
-    toursIn: 'tour', explore: 'Scopri', from: 'da'
+    toursIn: 'tour', explore: 'Scopri', from: 'da',
+    bundleBadge: '🎁 Bundle Package', bundleTitle: 'Pacchetti Combinati', bundleSubtitle: 'Più attività insieme, prezzo scontato rispetto a prenotarle separatamente.',
+    whatsappBtn: 'WhatsApp', emailBtn: '✉️ Email', detailsBtn: 'Dettagli', bookNowBtn: 'Prenota ora',
+    ctaTitle: 'Nessun pacchetto ti convince al 100%?', ctaSubtitle: 'Componi tu il pacchetto: scegli le escursioni, indica le date e ricevi il preventivo su WhatsApp.', ctaBtn: 'Crea il tuo pacchetto →'
   },
   ru: {
     eyebrow: 'Тематические подборки',
@@ -80,7 +86,10 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     seaTitle: 'Море и снорклинг', seaDesc: 'Рас-Мухаммед, Тиран, частные лодки и коралловые рифы Красного моря.',
     beyondTitle: 'За пределами Шарма', beyondDesc: 'Каир, Луксор, Петра и Иерусалим — однодневные поездки за пределы Синая.',
     funTitle: 'Развлечения и вода', funDesc: 'Аквапарк, дельфины, парасейлинг и катание на катере.',
-    toursIn: 'туров', explore: 'Смотреть', from: 'от'
+    toursIn: 'туров', explore: 'Смотреть', from: 'от',
+    bundleBadge: '🎁 Комбо-пакет', bundleTitle: 'Комбинированные пакеты', bundleSubtitle: 'Несколько активностей вместе по выгодной цене по сравнению с раздельным бронированием.',
+    whatsappBtn: 'WhatsApp', emailBtn: '✉️ Email', detailsBtn: 'Подробнее', bookNowBtn: 'Забронировать',
+    ctaTitle: 'Ни один пакет не подходит на 100%?', ctaSubtitle: 'Составьте свой пакет: выберите экскурсии, укажите даты и получите предложение в WhatsApp.', ctaBtn: 'Создать свой пакет →'
   },
   de: {
     eyebrow: 'Kuratierte Kollektionen',
@@ -90,7 +99,10 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     seaTitle: 'Meer & Schnorcheln', seaDesc: 'Ras Mohammed, Tiran, private Boote und die Korallenriffe des Roten Meeres.',
     beyondTitle: 'Jenseits von Sharm', beyondDesc: 'Kairo, Luxor, Petra und Jerusalem — Tagesausflüge außerhalb des Sinai.',
     funTitle: 'Spaß & Wasser', funDesc: 'Wasserpark, Delfine, Parasailing und Speedboot-Touren.',
-    toursIn: 'Touren', explore: 'Entdecken', from: 'ab'
+    toursIn: 'Touren', explore: 'Entdecken', from: 'ab',
+    bundleBadge: '🎁 Bundle-Paket', bundleTitle: 'Kombi-Pakete', bundleSubtitle: 'Mehrere Aktivitäten zusammen, zu einem günstigeren Preis als bei Einzelbuchung.',
+    whatsappBtn: 'WhatsApp', emailBtn: '✉️ E-Mail', detailsBtn: 'Details', bookNowBtn: 'Jetzt Buchen',
+    ctaTitle: 'Kein Paket überzeugt dich zu 100%?', ctaSubtitle: 'Stelle dein eigenes Paket zusammen: wähle die Touren, gib deine Daten ein und erhalte ein Angebot per WhatsApp.', ctaBtn: 'Erstelle dein eigenes Paket →'
   }
 };
 
@@ -139,10 +151,10 @@ export default function PackagesPage() {
       <div className="bg-[#0d1f2d] pt-10 pb-4">
         <div className="max-w-6xl mx-auto px-4">
           <div className="inline-block bg-[#ffa500] text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-            🎁 Bundle Package
+            {tr.bundleBadge}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Pacchetti Combinati</h2>
-          <p className="text-white/60 text-sm mb-8 max-w-xl">Più attività insieme, prezzo scontato rispetto a prenotarle separatamente.</p>
+          <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">{tr.bundleTitle}</h2>
+          <p className="text-white/60 text-sm mb-8 max-w-xl">{tr.bundleSubtitle}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-4">
             {bundles.map((bundle) => {
@@ -182,13 +194,13 @@ export default function PackagesPage() {
                           className="flex items-center justify-center gap-1.5 bg-[#25D366] text-white text-xs font-bold py-2 rounded-full hover:bg-[#1ebe57] transition"
                         >
                           <Image src="/social/whatsapp.png" alt="" width={14} height={14} />
-                          WhatsApp
+                          {tr.whatsappBtn}
                         </a>
                         <a
                           href={`mailto:info@cdalise.com?subject=${encodeURIComponent(`Prenotazione: ${bundle.name}`)}&body=${encodeURIComponent(`Ciao! Vorrei prenotare il pacchetto "${bundle.name}" (€${bundle.price}).`)}`}
                           className="flex items-center justify-center gap-1.5 bg-[#00a8cc] text-white text-xs font-bold py-2 rounded-full hover:bg-[#0088aa] transition"
                         >
-                          ✉️ Email
+                          {tr.emailBtn}
                         </a>
                       </div>
                     ) : (
@@ -197,13 +209,13 @@ export default function PackagesPage() {
                           href={`/packages/${bundle.id}`}
                           className="flex items-center justify-center border border-gray-200 text-gray-700 text-xs font-semibold py-2 rounded-full hover:border-[#00a8cc] transition"
                         >
-                          Dettagli
+                          {tr.detailsBtn}
                         </Link>
                         <button
                           onClick={() => setBookingBundle(bundle.id)}
                           className="flex items-center justify-center bg-[#25D366] text-white text-xs font-bold py-2 rounded-full hover:bg-[#1ebe57] transition"
                         >
-                          Prenota ora
+                          {tr.bookNowBtn}
                         </button>
                       </div>
                     )}
@@ -219,14 +231,14 @@ export default function PackagesPage() {
       <div className="bg-[#ffa500] py-6 px-4">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h3 className="font-black text-white uppercase text-lg">Nessun pacchetto ti convince al 100%?</h3>
-            <p className="text-white/90 text-sm">Componi tu il pacchetto: scegli le escursioni, indica le date e ricevi il preventivo su WhatsApp.</p>
+            <h3 className="font-black text-white uppercase text-lg">{tr.ctaTitle}</h3>
+            <p className="text-white/90 text-sm">{tr.ctaSubtitle}</p>
           </div>
           <Link
             href="/packages/create"
             className="shrink-0 bg-white text-[#0d1f2d] font-bold text-sm px-6 py-3 rounded-full hover:bg-gray-100 transition whitespace-nowrap"
           >
-            Crea il tuo pacchetto →
+            {tr.ctaBtn}
           </Link>
         </div>
       </div>
