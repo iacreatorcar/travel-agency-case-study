@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { verifySessionToken, SITE_SESSION_COOKIE } from './lib/site-session';
 
+// Site-wide access gate disabled for local dev preview (2026-09-14).
+// Re-enable by restoring the matcher below.
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -21,7 +23,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!site-access|api/site-auth|_next/static|_next/image|favicon.ico|robots.txt|logo.png).*)'
-  ]
+  matcher: []
 };

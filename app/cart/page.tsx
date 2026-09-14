@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { GOOGLE_REVIEW_LINK } from '../../lib/google-review';
 import { useCart } from '../../lib/cart-context';
-import { supabase } from '../../lib/supabase';
 import { Lang } from '../../lib/tours';
 import Header from '../vetrina/Header';
 import Footer from '../vetrina/Footer';
@@ -122,18 +121,7 @@ export default function CartPage() {
 
     const fullMessage = `${form.message ? form.message + '\n\n' : ''}Requested tours:\n${tourSummary}`;
 
-    const { error: insertError } = await supabase.from('contact_messages').insert({
-      full_name: form.name,
-      phone: form.phone,
-      email: form.email,
-      message: fullMessage
-    });
-
     setSubmitting(false);
-    if (insertError) {
-      setError(tr.errorGeneric);
-      return;
-    }
 
     fetch('/api/notify', {
       method: 'POST',
@@ -177,7 +165,7 @@ export default function CartPage() {
           {items.length === 0 && (
             <div className="bg-white rounded-xl shadow p-10 text-center text-gray-500">
               {tr.empty}{' '}
-              <Link href="/tours" className="text-[#00a8cc] font-semibold hover:underline">{tr.browseTours}</Link>
+              <Link href="/packages" className="text-[#00a8cc] font-semibold hover:underline">{tr.browseTours}</Link>
             </div>
           )}
 

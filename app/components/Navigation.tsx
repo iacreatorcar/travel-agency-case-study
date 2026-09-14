@@ -20,23 +20,17 @@ export default function Navigation() {
             <Link href="/" className="hover:text-[#ffa500] transition">
               Home
             </Link>
-            <Link href="/tours" className="hover:text-[#ffa500] transition">
-              Tours
+            <Link href="/packages" className="hover:text-[#ffa500] transition">
+              Packages
             </Link>
-            <Link href="/hotels" className="hover:text-[#ffa500] transition">
-              Hotels
-            </Link>
-            <Link href="/transfers" className="hover:text-[#ffa500] transition">
-              Transfers
+            <Link href="/quick-booking" className="hover:text-[#ffa500] transition">
+              Booking
             </Link>
             <Link href="/about" className="hover:text-[#ffa500] transition">
               About
             </Link>
-            <Link href="/dashboard" className="hover:text-[#ffa500] transition">
-              Admin Dashboard
-            </Link>
-            <Link href="/agent" className="hover:text-[#ffa500] transition">
-              Agent Portal
+            <Link href="/contact" className="hover:text-[#ffa500] transition">
+              Contact
             </Link>
           </div>
 
@@ -55,23 +49,17 @@ export default function Navigation() {
             <Link href="/" className="block hover:text-[#ffa500]">
               Home
             </Link>
-            <Link href="/tours" className="block hover:text-[#ffa500]">
-              Tours
+            <Link href="/packages" className="block hover:text-[#ffa500]">
+              Packages
             </Link>
-            <Link href="/hotels" className="block hover:text-[#ffa500]">
-              Hotels
-            </Link>
-            <Link href="/transfers" className="block hover:text-[#ffa500]">
-              Transfers
+            <Link href="/quick-booking" className="block hover:text-[#ffa500]">
+              Booking
             </Link>
             <Link href="/about" className="block hover:text-[#ffa500]">
               About
             </Link>
-            <Link href="/dashboard" className="block hover:text-[#ffa500]">
-              Admin Dashboard
-            </Link>
-            <Link href="/agent" className="block hover:text-[#ffa500]">
-              Agent Portal
+            <Link href="/contact" className="block hover:text-[#ffa500]">
+              Contact
             </Link>
           </div>
         )}

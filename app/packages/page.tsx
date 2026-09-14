@@ -294,17 +294,16 @@ export default function PackagesPage() {
                 {/* Tour cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
                   {colTours.map((tour) => (
-                    <Link
+                    <div
                       key={tour.slug}
-                      href={`/tours/${tour.slug}`}
-                      className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
+                      className="group relative rounded-2xl overflow-hidden shadow-md"
                     >
                       <div className="relative h-36 sm:h-40">
                         <Image
                           src={tour.image}
                           alt={tour.title[language]}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                       </div>
@@ -319,7 +318,7 @@ export default function PackagesPage() {
                           {tour.price}
                         </span>
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
 

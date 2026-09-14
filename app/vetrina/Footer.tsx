@@ -21,11 +21,8 @@ const defaultLabels: FooterLabels = {
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/tours', label: 'Tours' },
   { href: '/packages', label: 'Packages' },
-  { href: '/events', label: 'Special Events' },
-  { href: '/hotels', label: 'Hotels' },
-  { href: '/transfers', label: 'Transfers' },
+  { href: '/quick-booking', label: 'Booking' },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact Us' }
 ];

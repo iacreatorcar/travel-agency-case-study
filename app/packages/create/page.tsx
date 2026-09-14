@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { tours } from '../../../lib/tours';
 import { generateQuotePDF } from '../../../lib/pdf-quote';
 import { GOOGLE_REVIEW_LINK } from '../../../lib/google-review';
-import { supabase } from '../../../lib/supabase';
 import Header from '../../vetrina/Header';
 import Footer from '../../vetrina/Footer';
 import { getMainNavLinks } from '../../../lib/nav';
@@ -95,23 +94,6 @@ export default function CreatePackagePage() {
 
   const handleConfirm = async () => {
     setSubmitting(true);
-    await supabase.from('package_bookings').insert({
-      customer_name: form.name,
-      customer_email: form.email || null,
-      package_slug: 'custom-package',
-      details: {
-        tours: selectedTours.map((t) => t.slug),
-        phone: form.phone,
-        hotel: form.hotel,
-        arrival: form.arrival,
-        departure: form.departure,
-        adults: form.adults,
-        kids0to2: form.kids0to2,
-        kids2to5: form.kids2to5,
-        kids5to10: form.kids5to10,
-        notes: form.notes
-      }
-    });
     setSubmitting(false);
     setSubmitted(true);
     window.open(`https://wa.me/000000000000?text=${waMessage}`, '_blank');

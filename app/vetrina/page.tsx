@@ -10,13 +10,10 @@ import Logo from './Logo';
 import FloatingButtons from './FloatingButtons';
 import MobileBottomNav from './MobileBottomNav';
 import Footer from './Footer';
-import ReviewsMarquee from '../events/ReviewsMarquee';
+import ReviewsMarquee from './ReviewsMarquee';
 import { galleryItems, GallerySource } from '../../lib/gallery';
-import ToursDropdown from './ToursDropdown';
 import { tours } from '../../lib/tours';
 import { bundles } from '../../lib/bundles';
-import { destinations } from '../../lib/destinations';
-import { tourThemes } from '../../lib/tour-themes';
 import { useCart } from '../../lib/cart-context';
 
 type Lang = 'en' | 'ar' | 'it' | 'ru' | 'de';
@@ -45,7 +42,7 @@ const currencyLabel: { [key in Currency]: string } = {
 
 const translations: { [key in Lang]: { [key: string]: string } } = {
   en: {
-    navHome: 'Home', navTours: 'Tours', navHotels: 'Hotels', navPackages: 'Packages', navAbout: 'About', navEvents: 'Events', navBlog: 'Travel Tips',
+    navHome: 'Home', navPackages: 'Packages', navAbout: 'About',
     login: 'Login',
     requestInfo: 'Request Info',
     heroTitle: 'Book Egypt Tours – Simple, Transparent, Trusted',
@@ -88,7 +85,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     rights: 'All rights reserved.'
   },
   ar: {
-    navHome: 'الرئيسية', navTours: 'الرحلات', navHotels: 'الفنادق', navPackages: 'الباقات', navAbout: 'من نحن', navEvents: 'الفعاليات', navBlog: 'نصائح السفر',
+    navHome: 'الرئيسية', navPackages: 'الباقات', navAbout: 'من نحن',
     login: 'تسجيل الدخول',
     requestInfo: 'اطلب معلومات',
     heroTitle: 'احجز رحلات مصر – بسيطة وشفافة وموثوقة',
@@ -131,7 +128,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     rights: 'جميع الحقوق محفوظة.'
   },
   it: {
-    navHome: 'Home', navTours: 'Tour', navHotels: 'Hotel', navPackages: 'Pacchetti', navAbout: 'Chi Siamo', navEvents: 'Eventi', navBlog: 'Consigli di Viaggio',
+    navHome: 'Home', navPackages: 'Pacchetti', navAbout: 'Chi Siamo',
     login: 'Accedi',
     requestInfo: 'Richiedi Info',
     heroTitle: 'Prenota Tour in Egitto – Semplice, Trasparente, Affidabile',
@@ -174,7 +171,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     rights: 'Tutti i diritti riservati.'
   },
   ru: {
-    navHome: 'Главная', navTours: 'Туры', navHotels: 'Отели', navPackages: 'Пакеты', navAbout: 'О нас', navEvents: 'События', navBlog: 'Советы путешественникам',
+    navHome: 'Главная', navPackages: 'Пакеты', navAbout: 'О нас',
     login: 'Войти',
     requestInfo: 'Запросить информацию',
     heroTitle: 'Туры по Египту – Просто, Прозрачно, Надёжно',
@@ -217,7 +214,7 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     rights: 'Все права защищены.'
   },
   de: {
-    navHome: 'Startseite', navTours: 'Touren', navHotels: 'Hotels', navPackages: 'Pakete', navAbout: 'Über uns', navEvents: 'Events', navBlog: 'Reisetipps',
+    navHome: 'Startseite', navPackages: 'Pakete', navAbout: 'Über uns',
     login: 'Anmelden',
     requestInfo: 'Info Anfragen',
     heroTitle: 'Ägypten-Touren Buchen – Einfach, Transparent, Zuverlässig',
@@ -278,14 +275,13 @@ export default function VetrinaPage() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [currencyMenuOpen, setCurrencyMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { items: cartItems, addItem } = useCart();
+  const { items: cartItems } = useCart();
   const t = translations[language];
   const isRtl = language === 'ar';
   const activeTours = tours.filter((tour) => tour.active !== false);
 
   const runSearch = () => {
-    const q = searchQuery.trim();
-    router.push(q ? `/tours?q=${encodeURIComponent(q)}` : '/tours');
+    router.push('/packages');
   };
 
   return (
@@ -395,18 +391,9 @@ export default function VetrinaPage() {
           <div className="max-w-7xl mx-auto px-4 h-12 flex items-center justify-between text-sm font-medium text-gray-700">
             <div className="flex items-center gap-6 overflow-x-auto">
               <Link href="/" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navHome}</Link>
-
-              <ToursDropdown label={t.navTours} language={language} />
-              {/* Parcheggiato: Hotels non incluso nella Phase 1 — riattivare quando serve
-              <Link href="/hotels" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navHotels}</Link>
-              */}
-              <Link href="/transfers" className="hover:text-[#00a8cc] whitespace-nowrap">{t.tabRentCar}</Link>
               <Link href="/quick-booking" className="hover:text-[#00a8cc] whitespace-nowrap font-semibold text-[#00a8cc]">Booking</Link>
               <Link href="/packages" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navPackages}</Link>
               <Link href="/about" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navAbout}</Link>
-              {/* Parcheggiato: Events non chiaro/confermato dal cliente — riattivare quando definito
-              <Link href="/events" className="hover:text-[#00a8cc] whitespace-nowrap">{t.navEvents}</Link>
-              */}
               <Link href="/contact" className="hover:text-[#00a8cc] whitespace-nowrap">{t.footerContact}</Link>
             </div>
           </div>
@@ -444,68 +431,6 @@ export default function VetrinaPage() {
           ))}
         </div>
       </section>
-
-      {/* POPULAR TOURS */}
-      <section className="py-12 bg-[#f5f7fa]">
-        <div className="max-w-6xl mx-auto px-4">
-          <Reveal>
-            <div className="flex justify-between items-end mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#0d1f2d]">{t.popularTours}</h2>
-              <Link href="/tours" className="text-[#00a8cc] font-semibold text-sm hover:underline">{t.viewAll} →</Link>
-            </div>
-          </Reveal>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:mx-0 sm:px-0">
-            {tours.filter((tour) => tour.active !== false).slice(0, 4).map((tour, i) => (
-              <Reveal key={tour.slug} delay={i * 100} className="shrink-0 w-64 snap-start sm:w-auto">
-                <Link
-                  href={`/tours/${tour.slug}`}
-                  className="group block bg-white rounded-xl overflow-hidden shadow hover:shadow-xl transition-all hover:-translate-y-1"
-                >
-                  <div className="relative h-40 overflow-hidden">
-                    <Image
-                      src={tour.image}
-                      alt={tour.title[language]}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span className="absolute top-2 right-2 bg-white/90 rounded-full w-8 h-8 flex items-center justify-center text-sm">♡</span>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-[#0d1f2d] text-sm mb-2">{tour.title[language]}</h3>
-                    <p className="text-xs text-gray-500 mb-2">{tour.duration[language]}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-[#00a8cc] font-bold">
-                        {tour.price} <span className="text-xs text-gray-500 font-normal">{t.perPerson}</span>
-                      </span>
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          addItem({
-                            slug: tour.slug,
-                            title: tour.title[language],
-                            image: tour.image,
-                            pricePerUnit: Number(tour.price.replace(/[^\d.]/g, '')),
-                            duration: tour.duration[language],
-                            date: new Date().toISOString().slice(0, 10),
-                            adults: 1,
-                            children: 0,
-                            infants: 0
-                          });
-                        }}
-                        className="text-xs font-semibold bg-[#0d1f2d] text-white px-3 py-1.5 rounded-full hover:bg-[#00a8cc] transition"
-                      >
-                        {t.requestInfo}
-                      </button>
-                    </div>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       {/* HOW IT WORKS */}
       <section className="py-12">
@@ -573,11 +498,11 @@ export default function VetrinaPage() {
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {[
-              { icon: '🐠', label: t.wayReef, href: '/tours?category=island' },
-              { icon: '🏜️', label: t.wayDesert, href: '/tours?category=one-day&destination=sharm-el-sheikh' },
-              { icon: '🕌', label: t.wayCulture, href: '/tours?destination=saint-catherine' },
-              { icon: '🌃', label: t.wayCity, href: '/tours?theme=water-sports' },
-              { icon: '🏛️', label: t.wayAbroad, href: '/tours?category=multi-day' }
+              { icon: '🐠', label: t.wayReef, href: '/packages' },
+              { icon: '🏜️', label: t.wayDesert, href: '/packages' },
+              { icon: '🕌', label: t.wayCulture, href: '/packages' },
+              { icon: '🌃', label: t.wayCity, href: '/packages' },
+              { icon: '🏛️', label: t.wayAbroad, href: '/packages' }
             ].map((way, i) => (
               <Reveal key={way.label} delay={i * 80}>
                 <Link

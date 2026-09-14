@@ -6,7 +6,6 @@ import { Lang } from '../../lib/tours';
 import Header from '../vetrina/Header';
 import Footer from '../vetrina/Footer';
 import { getMainNavLinks } from '../../lib/nav';
-import { supabase } from '../../lib/supabase';
 
 const t: { [key in Lang]: { [key: string]: string } } = {
   en: {
@@ -141,18 +140,7 @@ export default function ContactPage() {
     e.preventDefault();
     setSubmitting(true);
     setError('');
-    const { error: insertError } = await supabase.from('contact_messages').insert({
-      full_name: form.name,
-      nationality: form.nationality,
-      phone: form.phone,
-      email: form.email,
-      message: form.message
-    });
     setSubmitting(false);
-    if (insertError) {
-      setError(insertError.message);
-      return;
-    }
 
     fetch('/api/notify', {
       method: 'POST',

@@ -69,10 +69,9 @@ export default function BundleDetailPage() {
           <p className="text-gray-500 text-xs mb-3">Le giornate si programmano in base alla disponibilità durante il tuo soggiorno.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
             {includedTours.map((tour) => (
-              <Link
+              <div
                 key={tour.slug}
-                href={`/tours/${tour.slug}`}
-                className="flex items-center gap-2.5 border border-gray-200 rounded-lg p-2 hover:border-[#00a8cc] transition group"
+                className="flex items-center gap-2.5 border border-gray-200 rounded-lg p-2"
               >
                 <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
                   <Image src={tour.image} alt={tour.title[language]} fill className="object-cover" />
@@ -81,8 +80,7 @@ export default function BundleDetailPage() {
                   <p className="font-bold text-gray-900 text-sm uppercase truncate">{tour.title[language]}</p>
                   <p className="text-gray-500 text-xs">{tour.duration[language]}</p>
                 </div>
-                <span className="text-gray-300 group-hover:text-[#00a8cc] transition shrink-0">→</span>
-              </Link>
+              </div>
             ))}
           </div>
 

@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const items = [
-  { href: '/tours?offers=1', icon: '🏷️', label: 'Offers' },
-  { href: '/tours', icon: '✈️', label: 'Trips' },
+  { href: '/packages', icon: '🏷️', label: 'Packages' },
+  { href: '/quick-booking', icon: '✈️', label: 'Booking' },
   { href: '/', icon: '🏠', label: 'Home' }
 ];
 

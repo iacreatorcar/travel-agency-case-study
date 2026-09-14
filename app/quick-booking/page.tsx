@@ -6,7 +6,6 @@ import Header from '../vetrina/Header';
 import Footer from '../vetrina/Footer';
 import { Lang } from '../../lib/tours';
 import { getMainNavLinks } from '../../lib/nav';
-import { supabase } from '../../lib/supabase';
 import { generateBookingPDF } from '../../lib/booking-pdf';
 
 const t: { [key in Lang]: { [key: string]: string } } = {
@@ -158,15 +157,6 @@ export default function QuickBookingPage() {
     setSubmitting(true);
 
     const details = buildDetails();
-
-    await supabase.from('quick_bookings').insert({
-      request_type: tab,
-      customer_name: form.name,
-      phone: form.whatsapp,
-      email: form.email || null,
-      notes: form.notes || null,
-      details: Object.fromEntries(details.map((d) => [d.label, d.value]))
-    });
 
     const doc = await generateBookingPDF({
       requestType: tabLabels[tab],
