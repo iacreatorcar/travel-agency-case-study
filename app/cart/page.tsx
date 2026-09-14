@@ -28,23 +28,6 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     errorGeneric: 'Oops! Please try again or message us directly on WhatsApp.',
     noBooking: 'No payment yet — this is just a booking request. We confirm everything on WhatsApp.'
   },
-  ar: {
-    breadcrumb: 'اختيارك',
-    title: 'الرحلات التي اخترتها',
-    clearAll: 'مسح الكل',
-    empty: 'لم تختر أي رحلة بعد.',
-    browseTours: 'تصفح الرحلات',
-    travelDate: 'تاريخ الرحلة', adults: 'البالغون (12+)', children: 'الأطفال (3-11)', infants: 'الرضع (0-2)',
-    delete: 'إزالة',
-    formTitle: 'أكمل حجزك',
-    formSubtitle: 'شارك بياناتك — سنرسل لك الخيارات على واتساب خلال ساعتين.',
-    name: 'الاسم الكامل', email: 'البريد الإلكتروني', phone: 'الهاتف / واتساب', message: 'طلبات خاصة (اختياري)',
-    messagePlaceholder: 'نباتي؟ احتياجات تنقل؟ أخبرنا!',
-    submit: 'إرسال إلى واتساب', submitting: 'جارٍ الإرسال...',
-    successTitle: 'تم الإرسال!', successText: 'افحص واتساب — نرسل لك خيارات الرحلات والأسعار الآن.',
-    errorGeneric: 'عذرًا! حاول مجددًا أو راسلنا مباشرة على واتساب.',
-    noBooking: 'بدون دفع الآن — هذا مجرد طلب حجز. نؤكد كل شيء على واتساب.'
-  },
   it: {
     breadcrumb: 'La Tua Selezione',
     title: 'I tour che hai selezionato',
@@ -105,7 +88,6 @@ export default function CartPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const isRtl = language === 'ar';
   const tr = t[language];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -135,7 +117,7 @@ export default function CartPage() {
   };
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-gray-100">
+    <div dir="ltr" className="min-h-screen bg-gray-100">
       <Header
         language={language}
         onLanguageChange={setLanguage}

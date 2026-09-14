@@ -17,16 +17,6 @@ const t: { [key in Lang]: { title: string; updated: string; body: string[] } } =
       'For any question about a specific tour or reservation, contact us at info@cdalise.com or via WhatsApp.'
     ]
   },
-  ar: {
-    title: 'شروط الاستخدام',
-    updated: 'آخر تحديث: 2026',
-    body: [
-      'Voyara Travel شركة سياحية تجريبية تعمل في شرم الشيخ.',
-      'يعرض هذا الموقع رحلاتنا وخدمات النقل وأسعارها كما هي مدرجة. إرسال نموذج الطلب لا يؤكد الحجز — جميع الطلبات تخضع للتوفر والتأكيد من فريقنا، الذي سيتواصل معك بالتفاصيل النهائية قبل طلب أي دفعة.',
-      'الأسعار المعروضة هي للشخص الواحد ما لم يُذكر خلاف ذلك، وقد تتغير دون إشعار مسبق حتى يتم تأكيد الحجز مباشرة مع فريقنا.',
-      'لأي سؤال حول رحلة أو حجز معين، تواصل معنا على info@cdalise.com أو عبر واتساب.'
-    ]
-  },
   it: {
     title: 'Termini di Utilizzo',
     updated: 'Ultimo aggiornamento: 2026',
@@ -61,11 +51,10 @@ const t: { [key in Lang]: { title: string; updated: string; body: string[] } } =
 
 export default function TermsPage() {
   const [language, setLanguage] = useState<Lang>('en');
-  const isRtl = language === 'ar';
   const tr = t[language];
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-white">
+    <div dir="ltr" className="min-h-screen bg-white">
       <Header language={language} onLanguageChange={setLanguage} backHref="/" navLinks={getMainNavLinks(language)} />
 
       <div className="max-w-3xl mx-auto px-4 py-16">

@@ -62,16 +62,6 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     funTitle: 'Fun & Water', funDesc: 'Water park, dolphins, parasailing and speedboat rides.',
     toursIn: 'tours', explore: 'Explore', from: 'from'
   },
-  ar: {
-    eyebrow: 'مجموعات منسقة',
-    title: 'اكتشف مصر بطريقتك',
-    subtitle: 'رحلات مجمّعة حسب الموضوع — اختر المزاج، تصفّح الخيارات، احجز ما يناسبك. كل رحلة تُحجز بشكل مستقل.',
-    desertTitle: 'مغامرة الصحراء', desertDesc: 'باغي، كواد، سفاري وليلة بدوية تحت النجوم.',
-    seaTitle: 'البحر والغطس', seaDesc: 'رأس محمد، تيران، قوارب خاصة والشعاب المرجانية في البحر الأحمر.',
-    beyondTitle: 'خارج شرم الشيخ', beyondDesc: 'القاهرة، الأقصر، البتراء والقدس — رحلات يومية خارج سيناء.',
-    funTitle: 'مرح ومياه', funDesc: 'حديقة مائية، دلافين، باراسيلينغ ورحلات بالقوارب السريعة.',
-    toursIn: 'رحلات', explore: 'استكشف', from: 'من'
-  },
   it: {
     eyebrow: 'Collezioni Curate',
     title: 'Trova il Tuo Egitto',
@@ -108,13 +98,12 @@ export default function PackagesPage() {
   const [language, setLanguage] = useState<Lang>('en');
   const [bookingBundle, setBookingBundle] = useState<string | null>(null);
   const tr = t[language];
-  const isRtl = language === 'ar';
 
   const titleKey: { [key: string]: string } = { desert: 'desertTitle', sea: 'seaTitle', beyond: 'beyondTitle', fun: 'funTitle' };
   const descKey: { [key: string]: string } = { desert: 'desertDesc', sea: 'seaDesc', beyond: 'beyondDesc', fun: 'funDesc' };
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-[#0d1f2d]">
+    <div dir="ltr" className="min-h-screen bg-[#0d1f2d]">
       <Header
         language={language}
         onLanguageChange={setLanguage}

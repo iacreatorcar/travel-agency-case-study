@@ -17,16 +17,6 @@ const t: { [key in Lang]: { title: string; updated: string; body: string[] } } =
       'This site does not use tracking or advertising cookies beyond what is required for the site to function.'
     ]
   },
-  ar: {
-    title: 'سياسة الخصوصية',
-    updated: 'آخر تحديث: 2026',
-    body: [
-      'تجمع Voyara Travel ("نحن") المعلومات الشخصية التي ترسلها من خلال نماذج التواصل وطلب الرحلات وتأجير السيارات — عادةً الاسم والبريد الإلكتروني ورقم الهاتف وأي تفاصيل رحلة تقدمها.',
-      'تُستخدم هذه المعلومات فقط للرد على طلبك، وتأكيد التوفر، وتقديم الخدمة التي طلبتها. لا نبيع أو نشارك معلوماتك مع أطراف ثالثة لأغراض تسويقية.',
-      'يتم تخزين بياناتك بأمان باستخدام Supabase، مزود قاعدة البيانات الخاص بنا. يمكنك أن تطلب منا مراجعة أو تصحيح أو حذف معلوماتك في أي وقت عبر التواصل معنا على info@cdalise.com.',
-      'لا يستخدم هذا الموقع ملفات تعريف ارتباط للتتبع أو الإعلانات باستثناء ما هو ضروري لعمل الموقع.'
-    ]
-  },
   it: {
     title: 'Privacy Policy',
     updated: 'Ultimo aggiornamento: 2026',
@@ -61,11 +51,10 @@ const t: { [key in Lang]: { title: string; updated: string; body: string[] } } =
 
 export default function PrivacyPage() {
   const [language, setLanguage] = useState<Lang>('en');
-  const isRtl = language === 'ar';
   const tr = t[language];
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-white">
+    <div dir="ltr" className="min-h-screen bg-white">
       <Header language={language} onLanguageChange={setLanguage} backHref="/" navLinks={getMainNavLinks(language)} />
 
       <div className="max-w-3xl mx-auto px-4 py-16">

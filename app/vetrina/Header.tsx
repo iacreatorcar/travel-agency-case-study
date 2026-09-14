@@ -17,7 +17,6 @@ const currencyLabel: { [key in Currency]: string } = {
 
 const flagMap: { [key in Lang]: string } = {
   en: '/flag/en.png',
-  ar: '/flag/ar.jpg',
   it: '/flag/it.png',
   ru: '/flag/ru.png',
   de: '/flag/de.png'
@@ -25,7 +24,6 @@ const flagMap: { [key in Lang]: string } = {
 
 const langName: { [key in Lang]: string } = {
   en: 'English',
-  ar: 'العربية',
   it: 'Italiano',
   ru: 'Русский',
   de: 'Deutsch'
@@ -33,7 +31,6 @@ const langName: { [key in Lang]: string } = {
 
 const bookLabel: { [key in Lang]: string } = {
   en: 'Book Now',
-  ar: 'احجز الآن',
   it: 'Prenota Ora',
   ru: 'Забронировать',
   de: 'Jetzt Buchen'

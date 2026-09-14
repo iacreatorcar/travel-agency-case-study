@@ -2,12 +2,11 @@
 
 import { createPortal } from 'react-dom';
 
-type Lang = 'en' | 'ar' | 'it' | 'ru' | 'de';
+type Lang = 'en' | 'it' | 'ru' | 'de';
 type Currency = 'USD' | 'EUR';
 
 const langLabels: { [key in Lang]: string } = {
   en: 'English',
-  ar: 'العربية',
   it: 'Italiano',
   ru: 'Русский',
   de: 'Deutsch'
@@ -15,7 +14,6 @@ const langLabels: { [key in Lang]: string } = {
 
 const langCountries: { [key in Lang]: string } = {
   en: 'United States',
-  ar: 'Egypt',
   it: 'Italia',
   ru: 'Russia',
   de: 'Germany'
@@ -67,7 +65,7 @@ export default function LangCurrencyModal({ language, currency, onLanguageChange
 
           <p className="text-sm font-semibold text-gray-400 mb-3">Region and Language</p>
           <div className="grid grid-cols-3 gap-3">
-            {(['en', 'ar', 'it', 'ru', 'de'] as Lang[]).map((lang) => (
+            {(['en', 'it', 'ru', 'de'] as Lang[]).map((lang) => (
               <button
                 key={lang}
                 onClick={() => onLanguageChange(lang)}

@@ -23,21 +23,6 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     whatsappOnline: 'Online now', whatsappReply: 'Avg. reply: a few minutes', whatsappBubble: 'Hi! How can we help you today? 👋',
     chatWhatsapp: 'Chat on WhatsApp', mapOffice: 'Demo Office', mapHours: 'Open daily · 9:00 – 21:00'
   },
-  ar: {
-    heroTitle: 'اتصل بنا', heroSubtitle: 'اتصل بنا، اكتب لنا، أو زرنا',
-    address: 'عنواننا', addressValue: 'مركز أعمال تجريبي، مدينة افتراضية (عنوان تجريبي)', whereToFindUs: 'شاهد أين نحن (فيديو)',
-    emailAddress: 'البريد الإلكتروني',
-    connectTitle: 'أرسل لنا رسالة',
-    fullName: 'الاسم الكامل', nationality: 'الجنسية', phone: 'الهاتف', email: 'البريد الإلكتروني', writeUs: 'اكتب لنا...',
-    sendMessage: 'إرسال الرسالة', sending: '...',
-    sentMessage: 'تم إرسال الرسالة! سنتواصل معك قريبًا.',
-    faqTitle: 'الأسئلة الشائعة',
-    faq1q: 'كيف يعمل الدعم على مدار الساعة؟', faq1a: 'فريقنا متاح على مدار الساعة عبر واتساب والهاتف والبريد الإلكتروني للمساعدة في الحجوزات والاستفسارات.',
-    faq2q: 'ما مدى سرعة ردكم؟', faq2a: 'عادةً ما نرد خلال ساعات قليلة، وغالبًا أسرع خلال ساعات العمل في مصر.',
-    faq3q: 'هل يمكنني طلب برنامج رحلة مخصص؟', faq3a: 'نعم — استخدم النموذج أدناه أو صفحة "خطط رحلتك" وسيقوم فريقنا بإعداد خطة مخصصة لك.',
-    whatsappOnline: 'متصل الآن', whatsappReply: 'متوسط الرد: بضع دقائق', whatsappBubble: 'مرحبًا! كيف يمكننا مساعدتك اليوم؟ 👋',
-    chatWhatsapp: 'تواصل عبر واتساب', mapOffice: 'مكتب خليج نعمة', mapHours: 'مفتوح يوميًا · 9:00 – 21:00'
-  },
   it: {
     heroTitle: 'Contattaci', heroSubtitle: 'Chiamaci, Scrivici, O Passa a Trovarci',
     address: 'Il Nostro Indirizzo', addressValue: 'Centro Affari Demo, Città di Esempio (indirizzo fittizio)', whereToFindUs: 'Guarda dove siamo (video)',
@@ -121,7 +106,6 @@ function FloatingInput({
 
 export default function ContactPage() {
   const [language, setLanguage] = useState<Lang>('en');
-  const isRtl = language === 'ar';
   const tr = t[language];
 
   const faqs = [
@@ -159,7 +143,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-white">
+    <div dir="ltr" className="min-h-screen bg-white">
       <Header
         language={language}
         onLanguageChange={setLanguage}

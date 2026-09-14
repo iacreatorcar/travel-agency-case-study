@@ -29,23 +29,6 @@ const t: { [key in Lang]: { [key: string]: string } } = {
     success: 'Request sent! Check WhatsApp.',
     error: 'Error. Try again.'
   },
-  ar: {
-    breadcrumb: 'الحجز السريع',
-    title: 'الحجز السريع',
-    subtitle: 'أرسل طلبك — سيتم إرساله إلى البريد والواتساب.',
-    tabFlights: 'الرحلات', tabHotels: 'الفنادق', tabVisas: 'التأشيرات', tabPackages: 'الباقات',
-    from: 'من', to: 'إلى', departure: 'المغادرة', returnDate: 'تاريخ العودة',
-    roundTrip: 'ذهاب وعودة', oneWay: 'ذهاب فقط', multiCity: 'مدن متعددة',
-    adults: 'بالغون', children: 'أطفال', infants: 'رضع',
-    class: 'الدرجة', economy: 'اقتصادي', business: 'أعمال', first: 'أول',
-    checkIn: 'تسجيل الوصول', checkOut: 'تسجيل المغادرة', guests: 'الضيوف',
-    visaCountry: 'الدولة', visaType: 'نوع التأشيرة',
-    fullName: 'الاسم الكامل', whatsapp: 'واتساب', email: 'البريد (اختياري)',
-    notes: 'ملاحظات',
-    submit: 'إرسال الطلب',
-    success: 'تم الإرسال! تحقق من واتساب.',
-    error: 'خطأ. حاول مجددًا.'
-  },
   it: {
     breadcrumb: 'Prenotazione Veloce',
     title: 'Prenotazione Veloce',
@@ -118,7 +101,6 @@ export default function QuickBookingPage() {
   });
 
   const tr = t[language];
-  const isRtl = language === 'ar';
 
   const tabLabels: { [key in Tab]: string } = {
     flights: tr.tabFlights, hotels: tr.tabHotels, visas: tr.tabVisas, packages: tr.tabPackages
@@ -180,7 +162,7 @@ export default function QuickBookingPage() {
   };
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-gray-100">
+    <div dir="ltr" className="min-h-screen bg-gray-100">
       <Header language={language} onLanguageChange={setLanguage} navLinks={getMainNavLinks(language)} />
 
       <div className="max-w-6xl mx-auto px-4 py-8">

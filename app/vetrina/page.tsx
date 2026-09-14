@@ -15,21 +15,19 @@ import { tours } from '../../lib/tours';
 import { bundles } from '../../lib/bundles';
 import { useCart } from '../../lib/cart-context';
 
-type Lang = 'en' | 'ar' | 'it' | 'ru' | 'de';
+type Lang = 'en' | 'it' | 'ru' | 'de';
 type Currency = 'USD' | 'EUR';
 
-const LANGS: Lang[] = ['en', 'ar', 'it', 'ru', 'de'];
+const LANGS: Lang[] = ['en', 'it', 'ru', 'de'];
 const CURRENCIES: Currency[] = ['USD', 'EUR'];
 const flagMap: { [key in Lang]: string } = {
   en: '/flag/en.png',
-  ar: '/flag/ar.jpg',
   it: '/flag/it.png',
   ru: '/flag/ru.png',
   de: '/flag/de.png'
 };
 const langName: { [key in Lang]: string } = {
   en: 'English',
-  ar: 'العربية',
   it: 'Italiano',
   ru: 'Русский',
   de: 'Deutsch'
@@ -82,49 +80,6 @@ const translations: { [key in Lang]: { [key: string]: string } } = {
     footerAbout: 'About Voyara Travel', footerAboutText: 'A portfolio demo built for travel agencies and tour operators.',
     footerContact: 'Contact', footerLinks: 'Quick Links', footerLicense: 'Portfolio case study — demo content only',
     rights: 'All rights reserved.'
-  },
-  ar: {
-    navHome: 'الرئيسية', navPackages: 'الباقات', navAbout: 'من نحن',
-    login: 'تسجيل الدخول',
-    requestInfo: 'اطلب معلومات',
-    heroTitle: 'احجز رحلات مصر – بسيطة وشفافة وموثوقة',
-    heroSubtitle: 'سفاري صحراوي، رحلات نيلية، غطس. أسعار شاملة بدون مفاجآت.',
-    searchDestination: 'الوجهة', searchCheckIn: 'تاريخ الوصول', searchGuests: 'الضيوف', searchBtn: 'بحث',
-    tabMakeTrip: 'خطط رحلتك', tabFindTrip: 'ابحث عن رحلتك', tabRentCar: 'التحويلات',
-    whenTraveling: 'متى ستسافر؟', exactTime: 'لدي وقت محدد', approxTime: 'لدي وقت تقريبي', notSure: 'غير متأكد بعد',
-    fromLabel: 'من', fromPlaceholder: 'اختر تاريخ بداية الرحلة',
-    toLabel: 'إلى', toPlaceholder: 'اختر تاريخ نهاية الرحلة',
-    makeTripBtn: 'ابدأ الرحلة',
-    statTravelers: 'وقت الرد عبر واتساب', statTours: 'تجربة', statDestinations: 'فئات', statRating: 'دعم',
-    popularTours: 'الرحلات الشائعة', viewAll: 'عرض الكل', perPerson: '/ للشخص',
-    howItWorks: 'كيف يعمل — 3 خطوات بسيطة', step1: '1️⃣ تصفح واختر', step2: '2️⃣ شارك بياناتك', step3: '3️⃣ تأكيد على واتساب',
-    highlights: 'أبرز معالم مصر',
-    waysEyebrow: 'اختر أسلوب رحلتك', waysTitle: '5 طرق لعيش شرم',
-    wayReef: 'البحر والغطس', wayDesert: 'الصحراء والمغامرة', wayCulture: 'الثقافة والتقاليد', wayCity: 'المرح والمياه', wayAbroad: 'خارج شرم والجولات الكبرى',
-    packagesEyebrow: 'وفر مع الباقات', packagesTitle: 'الباقات', packagesViewAll: 'عرض كل الباقات',
-    reviewsEyebrow: 'ماذا يقول المسافرون', reviewsTitle: 'صوت مسافرينا', reviewsCount: 'تقييم موثّق على جوجل',
-    tipsEyebrow: 'نصائح من المرشدين', tipsTitle: 'قبل السفر',
-    tip1: 'احجز مسبقًا لضمان التوفر في موسم الذروة',
-    tip2: 'في الصحراء أحضر واقي شمس عالي الحماية وقبعة وماء',
-    tip3: 'للغطس، قناعك وأنبوب التنفس الخاص بك يحدثان فرقًا',
-    tip4: 'اسألنا عن باقات مخصصة — خصومات للمجموعات والعائلات',
-    customEyebrow: 'عرض مخصص', customTitle1: 'صمّم', customTitleHighlight: 'باقتك', customTitle2: 'في 3 خطوات',
-    customDesc: 'اختر التجارب، أضف تواريخ سفرك واحصل على عرض تفصيلي عبر واتساب. يرد عليك شخص حقيقي، وليس روبوتًا.',
-    customTime: 'دقيقتان', customNoCommit: 'بدون التزام', customCta: 'ابدأ الآن',
-    certTitle: 'إرشادات مخصصة لرحلة الاستدامة الخاصة بك',
-    certBrand: 'معتمد من Travelife', certSubtitle: 'التميز في الاستدامة',
-    faqTitle: 'أسئلة شائعة',
-    faq1q: 'كيف أحجز رحلة؟', faq1a: '1) تصفح الرحلات 2) انقر "احجز الآن" 3) شارك تواريخك وواتساب 4) نرسل خيارات في غضون ساعتين 5) تأكيد والحصول على التفاصيل',
-    faq2q: 'هل المرشدون والطعام مشمولون؟', faq2a: 'نعم. جميع الأسعار شاملة الكل: مرشد محلي مرخص، غداء، مشروبات، رسوم الدخول. بدون مفاجآت.',
-    faq3q: 'إذا احتجت لإلغاء؟', faq3a: 'إلغاء مجاني حتى 48 ساعة قبل. راسلنا فقط على واتساب — بدون أسئلة.',
-    helpTitle: 'تحتاج مساعدة في إيجاد رحلتك؟', helpBtn: 'اتصل بنا',
-    helpWhatsapp: 'تواصل معنا عبر واتساب', helpAssistance: 'دعم على مدار الساعة بأكثر من 20 لغة',
-    galleryTitle: 'معرض رحلات مثيرة', gallerySubtitle: 'تابعنا على وسائل التواصل الاجتماعي للمزيد من الرحلات المثيرة',
-    newsletterTitle: 'اشترك في نشرتنا الإخبارية', newsletterSubtitle: 'احصل على تحديثات Voyara Travel والعروض والأخبار مباشرة في بريدك.',
-    newsletterPlaceholder: 'بريدك الإلكتروني', newsletterBtn: 'اشترك',
-    footerAbout: 'عن Voyara Travel', footerAboutText: 'عرض تجريبي في معرض الأعمال لوكالات السفر ومشغلي الرحلات.',
-    footerContact: 'اتصل بنا', footerLinks: 'روابط سريعة', footerLicense: 'دراسة حالة في معرض الأعمال — محتوى تجريبي فقط',
-    rights: 'جميع الحقوق محفوظة.'
   },
   it: {
     navHome: 'Home', navPackages: 'Pacchetti', navAbout: 'Chi Siamo',
@@ -269,7 +224,6 @@ export default function VetrinaPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const { items: cartItems } = useCart();
   const t = translations[language];
-  const isRtl = language === 'ar';
   const activeTours = tours.filter((tour) => tour.active !== false);
 
   const runSearch = () => {
@@ -277,7 +231,7 @@ export default function VetrinaPage() {
   };
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} className="min-h-screen bg-white pb-16 md:pb-0">
+    <div dir="ltr" className="min-h-screen bg-white pb-16 md:pb-0">
       {/* NAV */}
       <nav className="sticky top-0 z-30 bg-white border-b border-gray-100">
         {/* Row 1: logo, search, lang/currency, cart, sign in */}
